@@ -117,8 +117,17 @@ character.addEventListener("mousedown", (e) => {
   characterHover.style.opacity = 0;
   characterHover.style.visibility = "hidden";
 
-  petting = true;
-  lastInteraction = Date.now();
+  const rect = character.getBoundingClientRect();
+  const localY = e.clientY - rect.top;
+
+  // Only allow wholesome headpats
+  if (localY <= rect.height * 0.2) {
+    petting = true;
+  } else {
+    lastInteraction = Date.now();
+    setCharacterState("sad");
+    return;
+  }
 
   document.body.classList.add("petting");
   petCursor.style.display = "block";
@@ -285,9 +294,21 @@ wrapper.addEventListener("touchstart", (e) => {
   if (!inside) return;
 
   hoveringCharacter = true;
-  petting = true;
+
+  const rect = character.getBoundingClientRect();
+  const localY = e.clientY - rect.top;
+
+  // Only allow wholesome headpats
+  if (localY <= rect.height * 0.2) {
+    petting = true;
+  } else {
+    lastInteraction = Date.now();
+    setCharacterState("sad");
+    return;
+  }
+  
   petSound.currentTime = 0;
-petSound.play();
+  petSound.play();
   lastInteraction = Date.now();
 
   document.body.classList.add("petting");
