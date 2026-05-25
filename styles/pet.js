@@ -117,7 +117,7 @@ character.addEventListener("mousedown", (e) => {
   characterHover.style.opacity = 0;
   characterHover.style.visibility = "hidden";
 
-  const rect = wrapper.getBoundingClientRect();
+  const rect = character.getBoundingClientRect();
   const localY = e.clientY - rect.top;
 
   // Only allow wholesome headpats
