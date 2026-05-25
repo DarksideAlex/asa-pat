@@ -117,7 +117,7 @@ character.addEventListener("mousedown", (e) => {
   characterHover.style.opacity = 0;
   characterHover.style.visibility = "hidden";
 
-  const rect = character.getBoundingClientRect();
+  const rect = wrapper.getBoundingClientRect();
   const localY = e.clientY - rect.top;
 
   // Only allow wholesome headpats
@@ -294,8 +294,6 @@ wrapper.addEventListener("touchstart", (e) => {
   if (!inside) return;
 
   hoveringCharacter = true;
-
-  const rect = character.getBoundingClientRect();
   const localY = e.clientY - rect.top;
 
   // Only allow wholesome headpats
